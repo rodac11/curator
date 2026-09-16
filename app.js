@@ -3,9 +3,11 @@ const mongoose = require('mongoose')
 const dotenv = require('dotenv').config()
 const path = require('path')
 const cors = require('cors')
+const linksRouter = require('./controllers/links')
 const logger = require('./utils/logger')
 //const middleware = require('./utils/middleware')
-const linksRouter = require('.controllers/links')
+const config = require('./utils/config')
+
 
 const app = express()
 
@@ -14,14 +16,7 @@ const app = express()
 
 logger.info('connecting to', config.MONGODB_URI)
 
-
-
-
-const Link = mongoose.model('Link', linkSchema)
-
-const mongoUrl = process.env.MONGODB_URI
-
-mongoose.connect(mongoUrl, { family: 4 })
+mongoose.connect(config.MONGODB_URI, { family: 4 })
     .then(() => {
 	logger.info('connected to MongoDB')
     })

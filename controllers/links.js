@@ -1,6 +1,7 @@
 const linksRouter = require('express').Router()
-const logger= = require('../utils/logger')
 const Link = require('../models/link')
+const logger = require('../utils/logger')
+
 
 
 linksRouter.get('/', (req, res) => {
@@ -79,4 +80,4 @@ linksRouter.delete('/api/links/:id', (req, res, next) => {
 	.catch(error => next (error))
 })
 
-module.exports = notesRouter
+module.exports = linksRouter

@@ -1,10 +1,9 @@
 const mongoose = require('mongoose')
 
-const linkSchema = mongoose.Schema({
+const linkSchema = new mongoose.Schema({
     url: String,
     note: String,
 })
-
 
 linkSchema.set('toJSON', {
     transform: (document, returnedObject) => {
@@ -14,4 +13,4 @@ linkSchema.set('toJSON', {
     }
 })
 
-module.experts = mongoose.model('Link', linkSchema)
+module.exports = mongoose.model('Link', linkSchema)
