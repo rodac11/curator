@@ -1,0 +1,31 @@
+{
+  "name": "curator",
+  "version": "1.0.0",
+  "description": "Sample project for fullstack app",
+  "keywords": [
+    "practice"
+  ],
+  "homepage": "https://github.com/rodac11/curator#readme",
+  "bugs": {
+    "url": "https://github.com/rodac11/curator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rodac11/curator.git"
+  },
+  "license": "MIT",
+  "author": "rodac11",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+      "start": "node index.js",
+      "dev": "node index.js --watch",
+      "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "mongodb": "^7.6.0",
+    "mongoose": "^9.10.1"
+  }
+}
