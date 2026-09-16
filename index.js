@@ -5,7 +5,6 @@ const path = require('path')
 const app = express()
 
 const linkSchema = mongoose.Schema({
-    name: String,
     url: String,
     note: String,
 })
@@ -37,7 +36,7 @@ app.get('/', (req, res) => {
 app.get('/api/links', (req, res) => {
     Link.find({}).then((links) => {
 	res.json(links)
-	//console.log(links)
+	console.log("GETALL")
 	})
 })
 
@@ -47,8 +46,9 @@ app.get('/api/links/:id', (req, res) => {
     Link.findById(req.params.id).then((link) => {
 	if (link) {
 	    res.json(link)
+	    console.log("Got Link on ID")
 	} else {
-	    console.log('not found not found')
+	    console.log("ID not Found")
 	    res.status(404).end()
 	}
     })
@@ -63,11 +63,6 @@ app.post('/api/links', (req, res, next) => {
 	    error: 'nothing to post',
 	})
     }
-    if (!body.name) {
-	return res.status(400).json({
-	    error: 'missing name'
-	})
-    }
     if (!body.url) {
 	return res.status(400).json({
 	    error: 'missing url'
@@ -76,9 +71,8 @@ app.post('/api/links', (req, res, next) => {
     if (!body.note) {
 	body.note = ''
     }
-    //unique name? unique url?
+    //unique url?
     const link = new Link({
-	name: body.name,
 	url: body.url,
 	note: body.note,
     })
@@ -100,12 +94,12 @@ app.put('/api/links/:id', (req, res, next) => {
 		return res.status(404).end()
 	    }
 
-	    link.name = body.name
 	    link.url = body.url
 	    link.note = body.note
 
 	    return link.save().then((updatedLink) => {
 		res.json(updatedLink)
+		console.log("PUT")
 	    })
 	})
 	.catch((error) => next(error))
